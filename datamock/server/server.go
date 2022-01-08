@@ -19,7 +19,7 @@ type UserNameServer struct {
 	pb.UnimplementedUserNameServer
 }
 
-func (s *UserNameServer) GetMockUserData(ctx context.Context, un *pb.Username) (*pb.User, error) {
+func (server *UserNameServer) GetMockUserData(ctx context.Context, un *pb.Username) (*pb.User, error) {
 	log.Printf("Recieved: %v", un.GetName())
 	if (len(un.GetName())) < 6 {
 		return nil, errors.New("length is too short")

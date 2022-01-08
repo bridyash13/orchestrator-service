@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
-	"errors"
 	"log"
 	"net"
+	"strconv"
+	"time"
 
+	pb1 "github.com/bridyash13/Mage/logic/proto"
 	pb "github.com/bridyash13/Mage/proto"
 
 	"google.golang.org/grpc"
@@ -21,7 +23,29 @@ type UserNameServer struct {
 
 func (server *UserNameServer) GetUserByName(ctx context.Context, un *pb.Username) (*pb.User, error) {
 	log.Printf("Recieved Name: %v", un.GetName())
-	return nil, errors.New("not implemented yet. Yash will implement me")
+
+	const (
+		address = "localhost:9001"
+	)
+
+	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+	if err != nil {
+		log.Fatalf("Did not connect. Error: %v", err)
+	}
+	defer conn.Close()
+
+	c := pb1.NewUserNameClient(conn)
+
+	ctx1, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	r, err := c.GetUser(ctx1, &pb1.Username{Name: un.GetName()})
+	if err != nil {
+		return nil, err
+	}
+
+	roll, err := strconv.ParseInt(r.Roll, 10, 64)
+	return &pb.User{Name: r.Name, Class: r.Class, Roll: roll}, err
 }
 
 func main() {

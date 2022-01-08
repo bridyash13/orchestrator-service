@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "github.com/bridyash13/Mage/logic;logicorchestrator";
+
+service UserName {
+    rpc GetUser (Username) returns (User) {}
+}
+
+message Username {
+    string name = 1;
+}
+
+message User {
+    string name = 1;
+    string class = 2;
+    string roll = 3;
+}
