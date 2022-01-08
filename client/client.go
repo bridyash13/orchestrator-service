@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/bridyash13/orchestrator-service/proto"
+	pb "github.com/bridyash13/Mage/proto"
 	"google.golang.org/grpc"
 )
 

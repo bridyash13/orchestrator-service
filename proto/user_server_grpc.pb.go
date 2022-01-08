@@ -4,7 +4,7 @@
 // - protoc             v3.19.2
 // source: user_server.proto
 
-package user_server
+package __
 
 import (
 	context "context"

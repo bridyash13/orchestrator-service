@@ -1,4 +1,4 @@
-module github.com/shubhamthakar/Mage
+module github.com/bridyash13/Mage
 
 go 1.17
 
