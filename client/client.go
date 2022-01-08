@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -15,6 +16,10 @@ const (
 
 func main() {
 
+	fmt.Println("Enter Your First Name: ")
+	var name string
+	fmt.Scanln(&name)
+
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("Connection was not successful. Error: %v", err)
@@ -26,7 +31,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	response, err := c.GetUserByName(ctx, &pb.Username{Name: "Yash"})
+	response, err := c.GetUserByName(ctx, &pb.Username{Name: name})
 	if err != nil {
 		log.Fatalf("Username not found. Error: %v", err)
 	}
