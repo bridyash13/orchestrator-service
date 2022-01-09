@@ -35,7 +35,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to listen. Error: %v", err)
 	}
-
 	// Creating new server
 	server := grpc.NewServer()
 	pb.RegisterUserNameServer(server, &UserNameServer{})

@@ -54,7 +54,6 @@ func (server *UserNameServer) GetUserByName(ctx context.Context, un *pb.Username
 }
 
 func main() {
-
 	// Listening to calls on port 9000
 	lis, err := net.Listen("tcp", port)
 	if err != nil {

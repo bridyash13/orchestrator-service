@@ -42,6 +42,7 @@ func (s *UserNameServer) GetUser(ctx context.Context, un *pb.Username) (*pb.User
 	ctx1, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
+
 	// Collecting response from datamock server
 	r, err := c.GetMockUserData(ctx1, &pb1.Username{Name: un.GetName()})
 	if err != nil {

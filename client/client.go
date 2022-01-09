@@ -28,11 +28,13 @@ func main() {
 	}
 	defer conn.Close()
 
+
 	// Creating a new client
 	c := pb.NewUserNameClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
+
 
 	// Calling a remote procedure
 	response, err := c.GetUserByName(ctx, &pb.Username{Name: name})
