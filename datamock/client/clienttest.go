@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // THIS FILE IS ONLY FOR TESTING PURPOSE
+=======
+>>>>>>> 02ba428953dd1c9662d31b629d62e00ea2eadbe4
 package main
 
 import (
