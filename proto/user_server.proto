@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package user_server;
+
+option go_package = "github.com/bridyash13/Mage;Mage";
+
+service UserName {
+    rpc GetUserByName (Username) returns (User) {}
+}
+
+message Username {
+    string name = 1;
+}
+
+message User {
+    string name = 1;
+    string class = 2;
+    int64 roll = 3;
+}
