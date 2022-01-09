@@ -19,7 +19,8 @@ type UserNameServer struct {
 	pb.UnimplementedUserNameServer
 }
 
-func (s *UserNameServer) GetMockUserData(ctx context.Context, un *pb.Username) (*pb.User, error) {
+// Implementation of interface
+func (server *UserNameServer) GetMockUserData(ctx context.Context, un *pb.Username) (*pb.User, error) {
 	log.Printf("Recieved: %v", un.GetName())
 	if (len(un.GetName())) < 6 {
 		return nil, errors.New("length is too short")
@@ -28,10 +29,13 @@ func (s *UserNameServer) GetMockUserData(ctx context.Context, un *pb.Username) (
 }
 
 func main() {
+
+	// Listening to calls on port 10000
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("Failed to listen. Error: %v", err)
 	}
+	// Creating new server
 	server := grpc.NewServer()
 	pb.RegisterUserNameServer(server, &UserNameServer{})
 	log.Printf("Server listening at %v", lis.Addr())

@@ -1,3 +1,4 @@
+// THIS FILE IS ONLY FOR TESTING PURPOSE
 package main
 
 import (
